@@ -1,0 +1,29 @@
+{
+  "name": "design-arena-desktop",
+  "version": "1.0.0",
+  "description": "Production-grade hardened Electron desktop wrapper for Design Arena.",
+  "productName": "Design Arena",
+  "main": "src/main/main.js",
+  "type": "commonjs",
+  "license": "UNLICENSED",
+  "author": "Design Arena Desktop",
+  "packageManager": "npm@11.13.0",
+  "engines": {
+    "node": ">=24.14.1 <25"
+  },
+  "scripts": {
+    "dev": "npm run generate:icons && electron .",
+    "start": "npm run generate:icons && electron .",
+    "generate:icons": "node build/generate-icons.mjs",
+    "audit:static": "node build/audit.mjs",
+    "pack": "npm run generate:icons && electron-builder --dir --config config/electron-builder.yml",
+    "dist": "npm run generate:icons && electron-builder --config config/electron-builder.yml"
+  },
+  "devDependencies": {
+    "@fiahfy/icns": "0.0.7",
+    "electron": "41.3.0",
+    "electron-builder": "26.8.1",
+    "png-to-ico": "3.0.1",
+    "sharp": "0.34.5"
+  }
+}

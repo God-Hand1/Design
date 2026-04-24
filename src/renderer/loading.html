@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none';"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Design Arena</title>
+    <link rel="stylesheet" href="./loading.css" />
+    <script src="./loading.js" defer></script>
+  </head>
+  <body>
+    <div class="background" aria-hidden="true">
+      <div class="glow glow-a"></div>
+      <div class="glow glow-b"></div>
+      <div class="grid"></div>
+    </div>
+
+    <main class="shell" aria-live="polite">
+      <section class="card">
+        <div class="brand-row">
+          <div class="logo-wrap">
+            <img class="logo" src="../assets/brand-mark.svg" alt="" />
+          </div>
+          <div>
+            <p class="eyebrow">Secure Desktop Shell</p>
+            <h1 class="title">Design Arena</h1>
+          </div>
+        </div>
+
+        <div class="status-pill" id="status-pill">
+          <span class="status-dot"></span>
+          <span id="status-title">Preparing Design Arena</span>
+        </div>
+
+        <p class="detail" id="status-detail">
+          Starting a hardened browser session.
+        </p>
+
+        <div class="loader" id="loader" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div class="actions" id="actions" hidden>
+          <button class="button button-primary" id="retry-button" type="button">Retry Secure Load</button>
+          <button class="button button-secondary" id="browser-button" type="button">Open in Browser</button>
+          <button class="button button-tertiary" id="quit-button" type="button">Quit</button>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

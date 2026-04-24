@@ -1,0 +1,159 @@
+:root {
+  color-scheme: dark;
+  --panel: rgba(14, 18, 24, 0.92);
+  --panel-border: rgba(240, 230, 216, 0.08);
+  --text: #f2ede4;
+  --muted: #a8b2bb;
+  --mint: #a0c3c4;
+  --sage: #aab788;
+  --danger: #ef8b7d;
+  --done: #8dbd9a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background: transparent;
+  overflow: hidden;
+  color: var(--text);
+  font-family: "SF Pro Display", "Segoe UI", "Helvetica Neue", sans-serif;
+}
+
+.hud {
+  height: 100%;
+  border-radius: 24px;
+  border: 1px solid var(--panel-border);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
+    var(--panel);
+  box-shadow: 0 18px 52px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(20px);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: -0.03em;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: auto;
+  padding-right: 2px;
+}
+
+.items::-webkit-scrollbar {
+  width: 8px;
+}
+
+.items::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.item {
+  padding: 12px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.item-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.filename {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.status {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.progress-track {
+  width: 100%;
+  height: 7px;
+  margin-top: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--sage), var(--mint));
+  transition: width 160ms ease;
+}
+
+.item-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.action {
+  border: 0;
+  border-radius: 12px;
+  padding: 8px 10px;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.action:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.action.cancel {
+  color: #ffd9d3;
+  background: rgba(239, 139, 125, 0.12);
+}
+
+.item.is-completed .status {
+  color: var(--done);
+}
+
+.item.is-cancelled .status,
+.item.is-failed .status,
+.item.is-interrupted .status {
+  color: var(--danger);
+}

@@ -1,0 +1,62 @@
+appId: com.designarena.desktop
+productName: Design Arena
+artifactName: ${productName}-${version}-${os}-${arch}.${ext}
+asar: true
+compression: maximum
+directories:
+  output: dist
+  buildResources: build
+files:
+  - package.json
+  - src/**/*
+  - build/icons/**
+extraMetadata:
+  productName: Design Arena
+executableName: DesignArena
+protocols:
+  - name: Design Arena Deep Links
+    schemes:
+      - designarena
+publish:
+  - provider: generic
+    url: https://updates.designarena.ai/desktop/
+    channel: latest
+mac:
+  category: public.app-category.graphics-design
+  target:
+    - dmg
+  icon: build/icons/icon.icns
+  hardenedRuntime: true
+  gatekeeperAssess: true
+  artifactName: Design Arena-${version}-${arch}.${ext}
+win:
+  target:
+    - nsis
+  icon: build/icons/icon.ico
+  executableName: DesignArena
+  legalTrademarks: Design Arena
+linux:
+  target:
+    - AppImage
+    - deb
+  category: Graphics
+  icon: build/icons
+  executableName: design-arena
+  synopsis: Secure desktop shell for Design Arena
+  desktop:
+    entry:
+      Name: Design Arena
+      StartupWMClass: Design Arena
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  shortcutName: Design Arena
+  uninstallDisplayName: Design Arena
+  createDesktopShortcut: always
+  createStartMenuShortcut: true
+  artifactName: DesignArena-Setup-${version}-${arch}.${ext}
+appImage:
+  artifactName: design-arena-${version}-${arch}.${ext}
+deb:
+  artifactName: design-arena_${version}_${arch}.${ext}
