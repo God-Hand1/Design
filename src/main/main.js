@@ -438,7 +438,8 @@ class DesignArenaController {
 
     contents.on('page-title-updated', (event, title) => {
       event.preventDefault();
-      this.window?.setTitle(title ? `${title} - ${APP_NAME}` : APP_NAME);
+      const newTitle = title && title !== APP_NAME ? `${title} - ${APP_NAME}` : APP_NAME;
+      this.window?.setTitle(newTitle);
     });
 
     contents.on('did-start-loading', () => {
