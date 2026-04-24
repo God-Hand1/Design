@@ -1,0 +1,16 @@
+build/
+dist/
+node_modules/
+.DS_Store
+*.log
+.env
+.env.*
+coverage/
+.vscode/
+.idea/
+*.bak
+*.swp
+*.pid
+.nyc_output/
+*.tmp
+__pycache__/
