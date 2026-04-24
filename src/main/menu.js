@@ -89,8 +89,8 @@ function createApplicationMenu(context) {
       submenu: [
         {
           label: 'Open Design Arena in Browser',
-          click: async () => {
-            await shell.openExternal(APP_ENTRY_URL);
+          click: () => {
+            shell.openExternal(APP_ENTRY_URL).catch(() => {});
           }
         }
       ]
