@@ -122,6 +122,8 @@ function registerSessionSecurity(ses, logger) {
     ses.setDevicePermissionHandler(() => false);
   }
 
+  const allowedRequestProtocols = new Set(['https:', 'wss:', 'data:', 'blob:', 'about:', 'devtools:']);
+
   ses.webRequest.onBeforeRequest((details, callback) => {
     const parsed = parseUrl(details.url);
     if (!parsed) {
@@ -129,8 +131,7 @@ function registerSessionSecurity(ses, logger) {
       return;
     }
 
-    const allowedProtocols = new Set(['https:', 'wss:', 'data:', 'blob:', 'about:', 'devtools:']);
-    if (!allowedProtocols.has(parsed.protocol)) {
+    if (!allowedRequestProtocols.has(parsed.protocol)) {
       logger.warn('Blocked non-secure request protocol', {
         url: details.url,
         resourceType: details.resourceType
