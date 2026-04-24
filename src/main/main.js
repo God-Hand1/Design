@@ -161,15 +161,22 @@ const configuredContents = new Set();
 
 function throttle(fn, waitMs) {
   let timeoutId = null;
+  let trailingArgs = null;
 
   return function throttled(...args) {
     if (timeoutId) {
+      trailingArgs = args;
       return;
     }
 
+    fn(...args);
     timeoutId = setTimeout(() => {
       timeoutId = null;
-      fn(...args);
+      if (trailingArgs) {
+        const pending = trailingArgs;
+        trailingArgs = null;
+        fn(...pending);
+      }
     }, waitMs);
   };
 }
@@ -820,14 +827,16 @@ if (singleInstanceLock) {
     app.exit(1);
   });
 
-  app.on('activate', async () => {
+  app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length > 0) {
       mainController?.window?.focus();
       return;
     }
 
     mainController = new DesignArenaController();
-    await mainController.create();
+    mainController.create().catch((error) => {
+      logger?.error('Failed to create window on activate', { error: error.message });
+    });
   });
 
   app.on('window-all-closed', () => {
